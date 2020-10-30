@@ -13,6 +13,7 @@ public class App {
         boolean nr1 = false;
         int number;
         boolean readyCalc;
+        char operatorChar = 'a';
         double talet = 0.0;
         double talet1 = 0.0;
         double answer = 0.0;
@@ -62,7 +63,7 @@ public class App {
                     nr1 = checkTal(tal1, length, number);
                     //if (nr1) readyCalc = true;
                 }else{
-                    char operatorChar = tal1.charAt(0);
+                    operatorChar = tal1.charAt(0);
                     switch (operatorChar){
                         case'+':
                             //answer = talet + talet1;
@@ -84,6 +85,9 @@ public class App {
                 //System.out.println(nr1);
                 if (nr1 == false){
                     System.out.println("Input error");
+                    System.out.println(number);
+                    System.out.println(talet);
+                    nr1 = true;
                 }else if (number==0) {
                     talet = d.parseDouble(tal1);
                     number = 1;
@@ -93,33 +97,56 @@ public class App {
                 }else {
                     talet1 = d.parseDouble (tal1);
                     nr1 = true;
-                    number = 1;
+                    switch (operatorChar){
+                        case'+':
+                            talet = talet + talet1;
+                            number = 1;
+                            break;
+                        case'-':
+                            talet = talet - talet1;
+                            number = 1;
+                            break;
+                        case'*':
+                            talet = talet * talet1;
+                            number = 1;
+                            break;
+                        case'/':
+                            talet = talet / talet1;
+                            number = 1;
+                            break;
+
+                        default:
+                    }
+
+                    System.out.println(talet);
+
+                    do {
+                        correct = false;
+                        System.out.println("Do you want to add another number to the calculation?(y/n): ");
+                        Scanner sc = new Scanner(System.in);
+                        start = sc.nextLine();
+                        char letter = start.charAt(0);
+                        if (letter == 'n' || letter == 'N') {
+                            //quit = true;
+                            correct = true;
+                            number = 3;
+                            //System.out.println("q");
+                        } else if (letter == 'y'  || letter == 'Y') {
+                            correct = true; // no valid input
+                        }else{
+                            correct = false;
+                        }
+                    } while (correct != true);
+                    //number = 1;
                 }
 
-            }while (nr1 == false || number <= 1);
+            }while (nr1 == false || number <= 2);
 
-            System.out.println("Enter operator: ");
-            Scanner scOperator = new Scanner(System.in);
-            operator = scOperator.nextLine();
-            char operatorChar = operator.charAt(0);
-            switch (operatorChar){
-                case'+':
-                    talet = talet + talet1;
-                break;
-                case'-':
-                    talet = talet - talet1;
-                    break;
-                case'*':
-                    talet = talet * talet1;
-                    break;
-                case'/':
-                    talet = talet / talet1;
-                    break;
+            //System.out.println("Enter operator: ");
+            //Scanner scOperator = new Scanner(System.in);
+            //operator = scOperator.nextLine();
+            //char operatorChar = operator.charAt(0);
 
-                default:
-            }
-
-            System.out.println(talet);
 
 
 
