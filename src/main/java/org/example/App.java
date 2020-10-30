@@ -77,9 +77,16 @@ public class App {
                 case'+':
                     answer = talet + talet1;
                 break;
-                //case'-’;
-                //case'*’;
-                //case'/’;
+                case'-':
+                    answer = talet - talet1;
+                    break;
+                case'*':
+                    answer = talet * talet1;
+                    break;
+                case'/':
+                    answer = talet / talet1;
+                    break;
+
                 default:
             }
 
