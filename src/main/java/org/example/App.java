@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
+        boolean correct = false;
         boolean cal = true;
         String start;
         String tal1;
@@ -15,13 +16,17 @@ public class App {
         String tal2;
         String mat;
         do {
-            mainMenu();
-            Scanner sc = new Scanner(System.in);
-            start = sc.nextLine();
-            char letter = start.charAt(0);
-            if (letter == 113 || letter == 81) {
-                break;
-            }
+            do {
+                mainMenu();
+                Scanner sc = new Scanner(System.in);
+                start = sc.nextLine();
+                char letter = start.charAt(0);
+                if (letter == 113 || letter == 81) {
+                    break;
+                } else if (letter != 49) {
+                    correct = true;
+                }
+            }while(correct!=true);
 
             System.out.println("Enter number 1: ");
             Scanner scNr1 = new Scanner(System.in);
@@ -45,11 +50,13 @@ public class App {
         System.out.println("Press q(enter) to quit ");
     }
     public static boolean checkTal(String tal, int length){
+        Boolean flag= false; // = Character.isDigit(tal.charAt(r));
         for (int r = 0; r < length; r++) {
             char letter = tal.charAt(r);
-            Boolean flag = Character.isDigit(tal.charAt(r));
-            if (flag) {
-                Tal = Tal + letter;
+            //Boolean flag = Character.isDigit(tal.charAt(r));
+            //if (flag) {
+            //Tal = Tal + letter;
+        }
        return flag;
     }
 }
