@@ -43,6 +43,8 @@ public class App {
             System.out.println(correct);
             number = 0;
             Double d = new Double("6.35");
+
+            nr1 = false;
             do {
                 if (number==0) {
                     System.out.println("Enter first number: ");
@@ -53,16 +55,19 @@ public class App {
                 tal1 = scNr1.nextLine();
                 int length = tal1.length();
                 nr1 = checkTal(tal1, length);
+                //System.out.println(nr1);
                 if (nr1 == false){
                     System.out.println("Input error");
                 }else if (number==0){
                     talet = d.parseDouble (tal1);
+                    number = 1;
                 }else {
                     talet1 = d.parseDouble (tal1);
                     nr1 = true;
+                    number = 2;
                 }
 
-            }while (nr1 == false);
+            }while (nr1 == false || number <= 1);
 
             System.out.println("Enter operator: ");
             Scanner scOperator = new Scanner(System.in);
