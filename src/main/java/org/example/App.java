@@ -12,8 +12,9 @@ public class App {
         boolean quit = false;
         boolean nr1 = false;
         int number;
-        double talet;
-        double talet1;
+        double talet = 0.0;
+        double talet1 = 0.0;
+        double answer = 0.0;
 
         String start;
         String tal1;
@@ -34,12 +35,12 @@ public class App {
                     quit = true;
                     correct = true;
                     //System.out.println("q");
-                } else if (letter != '1') {
-                    correct = false; // no valid input
+                } else if (letter == '1') {
+                    correct = true; // no valid input
                 }
             } while (correct != true);
             if (quit) break; // ends the program
-
+            System.out.println(correct);
             number = 0;
             Double d = new Double("6.35");
             do {
@@ -68,18 +69,17 @@ public class App {
             operator = scOperator.nextLine();
             char operatorChar = operator.charAt(0);
             switch (operatorChar){
-                case'+’;
-
-                case'-’;
-                case'*’;
-                case'/’;
+                case'+':
+                    answer = talet + talet1;
+                break;
+                //case'-’;
+                //case'*’;
+                //case'/’;
                 default:
             }
 
-            System.out.println("Enter second number: ");
-            Scanner scNr2 = new Scanner(System.in);
-            tal2 = scNr2.nextLine();
-            int length2 = tal2.length();
+            System.out.println(answer);
+
 
 
 
