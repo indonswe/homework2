@@ -12,6 +12,7 @@ public class App {
         boolean quit = false;
         boolean nr1 = false;
         int number;
+        boolean readyCalc;
         double talet = 0.0;
         double talet1 = 0.0;
         double answer = 0.0;
@@ -29,8 +30,6 @@ public class App {
                 Scanner sc = new Scanner(System.in);
                 start = sc.nextLine();
                 char letter = start.charAt(0);
-                //System.out.println(letter);
-                //if (letter == 113 || letter == 81) {
                 if (letter == 'q' || letter == 'Q') {
                     quit = true;
                     correct = true;
@@ -48,23 +47,53 @@ public class App {
             do {
                 if (number==0) {
                     System.out.println("Enter first number: ");
-                }else{
-                    System.out.println("Enter second number: ");
+
+                }else if(number == 1){
+                    System.out.println("Enter operator: ");
+                }
+                else{
+                    System.out.println("Enter a number: ");
                 }
                 Scanner scNr1 = new Scanner(System.in);
                 tal1 = scNr1.nextLine();
                 int length = tal1.length();
-                nr1 = checkTal(tal1, length);
+
+                if (number ==0 || number ==2){
+                    nr1 = checkTal(tal1, length, number);
+                    //if (nr1) readyCalc = true;
+                }else{
+                    char operatorChar = tal1.charAt(0);
+                    switch (operatorChar){
+                        case'+':
+                            //answer = talet + talet1;
+                            break;
+                        case'-':
+                            //answer = talet - talet1;
+                            break;
+                        case'*':
+                            //answer = talet * talet1;
+                            break;
+                        case'/':
+                            //answer = talet / talet1;
+                            break;
+
+                        default:
+                            nr1=false;
+                    }
+                }
                 //System.out.println(nr1);
                 if (nr1 == false){
                     System.out.println("Input error");
-                }else if (number==0){
-                    talet = d.parseDouble (tal1);
+                }else if (number==0) {
+                    talet = d.parseDouble(tal1);
                     number = 1;
+                }else if (number==1){
+                        //talet = d.parseDouble (tal1);
+                        number = 2;
                 }else {
                     talet1 = d.parseDouble (tal1);
                     nr1 = true;
-                    number = 2;
+                    number = 1;
                 }
 
             }while (nr1 == false || number <= 1);
@@ -75,22 +104,22 @@ public class App {
             char operatorChar = operator.charAt(0);
             switch (operatorChar){
                 case'+':
-                    answer = talet + talet1;
+                    talet = talet + talet1;
                 break;
                 case'-':
-                    answer = talet - talet1;
+                    talet = talet - talet1;
                     break;
                 case'*':
-                    answer = talet * talet1;
+                    talet = talet * talet1;
                     break;
                 case'/':
-                    answer = talet / talet1;
+                    talet = talet / talet1;
                     break;
 
                 default:
             }
 
-            System.out.println(answer);
+            System.out.println(talet);
 
 
 
@@ -104,11 +133,18 @@ public class App {
         System.out.println("Press q(enter) to quit ");
     }
 
-    public static boolean checkTal(String tal, int length) {
+    public static boolean checkTal(String tal, int length, int num) {
         Boolean flag = true; // = Character.isDigit(tal.charAt(r));
-        char letter;
+        //char letter;
         for (int r = 0; r < length; r++) {
-            letter = tal.charAt(r);
+            //letter = tal.charAt(r);
+            //if (num==1){
+                //char operatorChar = String.charAt(0)
+                //if (flag != true) {
+                   // break;
+               // }
+
+            //}
             flag = Character.isDigit(tal.charAt(r));
             if (flag != true) {
                 break;
