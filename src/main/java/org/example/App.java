@@ -6,52 +6,50 @@ import java.util.Scanner;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-
-    {
+public class App {
+    public static void main(String[] args) {
         boolean cal = true;
         String start;
         String tal1;
+        String operator;
         String tal2;
         String mat;
-        do{
-            System.out.println("Press (enter) to start or q(enter) to quit ");
+        do {
+            mainMenu();
             Scanner sc = new Scanner(System.in);
             start = sc.nextLine();
             char letter = start.charAt(0);
-            if (letter == 113 || letter == 81){
+            if (letter == 113 || letter == 81) {
                 break;
             }
+
             System.out.println("Enter number 1: ");
             Scanner scNr1 = new Scanner(System.in);
-            start = scNr1.nextDouble();
-            tal1 = sc.nextLine();
+            tal1 = scNr1.nextLine();
             int length = tal1.length();
-            //System.out.println(length);
-            //clean
-            int talnr = 1;
-            int latest = 0;
-            for (int r = 0; r < length; r++) {
-                char letter = name.charAt(r);
-            char letter = name.charAt(r);
-            else if(letter == 43){
-                talnr ++;
-                latest = 2;
-                if (latest==2);{
-                    Tal = Tal + "";
-            System.out.println("Input one operator (+-*/) or q for quit: ");
-            Scanner sc2 = new Scanner(System.in);
-            mat = sc2.nextLine();
-            System.out.println("Input number two or q for quit: ");
-            Scanner sc3 = new Scanner(System.in);
-            tal2 = sc3.nextLine();
-        }while (cal);
+            boolean nr1 = checkTal(tal1, length);
+            System.out.println("Enter operator: ");
+            Scanner scOperator = new Scanner(System.in);
+            operator = scOperator.nextLine();
+            System.out.println("Enter number 2: ");
+            Scanner scNr2 = new Scanner(System.in);
+            tal2 = scNr2.nextLine();
+            int length2 = tal2.length();
+
+
+        }while (true);
+    }
+    public static void mainMenu(){
+        System.out.println("Start menu ");
+        System.out.println("Press 1(enter) to start ");
+        System.out.println("Press q(enter) to quit ");
+    }
+    public static boolean checkTal(String tal, int length){
+        for (int r = 0; r < length; r++) {
+            char letter = tal.charAt(r);
+            Boolean flag = Character.isDigit(tal.charAt(r));
+            if (flag) {
+                Tal = Tal + letter;
+       return flag;
     }
 }
-//public class input(){
-
-    //System.out.println(age);
-//}
-
