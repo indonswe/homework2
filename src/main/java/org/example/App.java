@@ -8,8 +8,9 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
-        boolean correct = false;
+        boolean correct;
         boolean cal = true;
+        boolean quit = false;
         String start;
         String tal1;
         String operator;
@@ -17,17 +18,23 @@ public class App {
         String mat;
         do {
             do {
-                mainMenu();
+                correct = false;
+                mainMenu(); // print main menu
                 Scanner sc = new Scanner(System.in);
                 start = sc.nextLine();
                 char letter = start.charAt(0);
-                if (letter == 113 || letter == 81) {
-                    break;
-                } else if (letter != 49) {
+                System.out.println(letter);
+                //if (letter == 113 || letter == 81) {
+                if (letter == 'q' || letter == 'Q') {
+                    quit = true;
                     correct = true;
+                    System.out.println("q");
+                } else if (letter != '1') {
+                    correct = false; // no valid input
                 }
             }while(correct!=true);
-
+            if (quit) break; // ends the program
+            System.out.println(correct);
             System.out.println("Enter number 1: ");
             Scanner scNr1 = new Scanner(System.in);
             tal1 = scNr1.nextLine();
