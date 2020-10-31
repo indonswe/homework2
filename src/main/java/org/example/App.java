@@ -12,21 +12,21 @@ public class App {
         boolean quit = false;
         boolean validInputcheck = false;
         int nr1or2orope = 0;
-        boolean readyCalc;
+        //boolean readyCalc;
         char operatorChar = 'a';
         double talet = 0.0;
         double talet1 = 0.0;
-        double answer = 0.0;
+        //double answer = 0.0;
         boolean mulOrDiv = false;
 
         String start ="";
         String tal1;
-        String operator;
-        String tal2;
-        String mat;
+        //String operator;
+        //String tal2;
+        //String mat;
 
-        do {
-            quit = mainMenu(correct, start, quit); // print main menu
+        do { //main loop
+            quit = mainMenu(); // handle main menu
             if (quit) break; // ends the program
             nr1or2orope = 0;
             talet = 0;
@@ -53,9 +53,8 @@ public class App {
                 int length = tal1.length();
 
                 if (nr1or2orope ==0 || nr1or2orope ==2){
-                    validInputcheck = checkTal(tal1, length, nr1or2orope);
-                    //if (nr1) readyCalc = true;
-                }else{
+                    validInputcheck = checkTal(tal1, length, nr1or2orope); //checks number input are valid
+                }else{ //checks operator input are valid
                     operatorChar = tal1.charAt(0);
                     switch (operatorChar){
                         case'+':
@@ -137,14 +136,15 @@ public class App {
         } while (true);
     }
 
-    public static boolean mainMenu(boolean correct, String start, boolean quit) {
+    public static boolean mainMenu() {
         System.out.println("Start menu ");
         System.out.println("Press 1(enter) to start ");
         System.out.println("Press q(enter) to quit ");
+        boolean quit = false;
+        boolean correct = false;
         do {
-            correct = false;
             Scanner sc = new Scanner(System.in);
-            start = sc.nextLine();
+            String start = sc.nextLine();
             char letter = start.charAt(0);
             if (letter == 'q' || letter == 'Q') {
                 quit = true;
