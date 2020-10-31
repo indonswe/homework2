@@ -11,22 +11,24 @@ public class App {
         boolean correct = false;
         boolean quit = false;
         boolean validInputcheck = false;
-        int nr1or2orope;
+        int nr1or2orope = 0;
         boolean readyCalc;
         char operatorChar = 'a';
         double talet = 0.0;
         double talet1 = 0.0;
         double answer = 0.0;
+        boolean mulOrDiv = false;
 
         String start ="";
         String tal1;
         String operator;
         String tal2;
         String mat;
+
         do {
             quit = mainMenu(correct, start, quit); // print main menu
             if (quit) break; // ends the program
-            nr1or2orope = 0;
+            //nr1or2orope = 0;
             Double d = new Double("0.0");//Use this to be able to parse but doesnt fully understand it
 
             validInputcheck = false;
@@ -35,7 +37,11 @@ public class App {
                     System.out.println("Enter first number: ");
 
                 }else if(nr1or2orope == 1){
-                    System.out.println("Enter operator: ");
+                   if (mulOrDiv){
+                       System.out.println("Enter operator(+-): ");
+                   }else {
+                       System.out.println("Enter operator(+-*/): ");
+                   }
                 }
                 else{
                     System.out.println("Enter a number: ");
@@ -58,8 +64,12 @@ public class App {
                             break;
                         case'*':
                             //answer = talet * talet1;
+                            if (mulOrDiv) validInputcheck=false;
+                            mulOrDiv = true;
                             break;
                         case'/':
+                            if (mulOrDiv) validInputcheck=false;
+                            mulOrDiv = true;
                             //answer = talet / talet1;
                             break;
 
@@ -83,47 +93,30 @@ public class App {
                     talet1 = d.parseDouble (tal1);
                     validInputcheck = true;
                     talet = calculation(operatorChar,talet,talet1);
-                    switch (operatorChar){
-                        case'+':
-                            talet = talet + talet1;
-                            nr1or2orope = 1;
-                            break;
-                        case'-':
-                            talet = talet - talet1;
-                            nr1or2orope = 1;
-                            break;
-                        case'*':
-                            talet = talet * talet1;
-                            nr1or2orope = 1;
-                            break;
-                        case'/':
-                            talet = talet / talet1;
-                            nr1or2orope = 1;
-                            break;
-
-                        default:
-                    }
+                    nr1or2orope = 1;
 
                     System.out.println(talet);
+                    if (mulOrDiv=false) {
+                        do {
 
-                    do {
-                        correct = false;
-                        System.out.println("Do you want to add another number to the calculation?(y/n): ");
-                        Scanner sc = new Scanner(System.in);
-                        start = sc.nextLine();
-                        char letter = start.charAt(0);
-                        if (letter == 'n' || letter == 'N') {
-                            //quit = true;
-                            correct = true;
-                            nr1or2orope = 3;
-                            //System.out.println("q");
-                        } else if (letter == 'y'  || letter == 'Y') {
-                            correct = true; // no valid input
-                        }else{
                             correct = false;
-                        }
-                    } while (correct != true);
-                    //number = 1;
+                            System.out.println("Do you want to add another number to the calculation?(y/n): ");
+                            Scanner sc = new Scanner(System.in);
+                            start = sc.nextLine();
+                            char letter = start.charAt(0);
+                            if (letter == 'n' || letter == 'N') {
+                                //quit = true;
+                                correct = true;
+                                nr1or2orope = 3;
+                                //System.out.println("q");
+                            } else if (letter == 'y' || letter == 'Y') {
+                                correct = true; // no valid input
+                            } else {
+                                correct = false;
+                            }
+                        } while (correct != true);
+                        //number = 1;
+                    }
                 }
 
             }while (validInputcheck == false || nr1or2orope <= 2);
@@ -184,6 +177,26 @@ public class App {
         return flag;
     }
     public static double calculation (char operatorChar,double talet,double talet1){
+        switch (operatorChar){
+            case'+':
+                talet = talet + talet1;
+                //nr1or2orope = 1;
+                break;
+            case'-':
+                talet = talet - talet1;
+                //nr1or2orope = 1;
+                break;
+            case'*':
+                talet = talet * talet1;
+                //nr1or2orope = 1;
+                break;
+            case'/':
+                talet = talet / talet1;
+                //nr1or2orope = 1;
+                break;
+
+            default:
+        }
         return talet;
     }
 
