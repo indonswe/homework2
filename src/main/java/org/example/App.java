@@ -78,25 +78,29 @@ public class App {
                             validInputcheck=false;
                     }
                 }
-                //System.out.println(nr1);
-                if (validInputcheck == false){
+
+                if (validInputcheck == false){ //for not valid inputs
                     System.out.println("Input error");
-                    System.out.println(nr1or2orope);
-                    System.out.println(talet);
+                    //System.out.println(nr1or2orope);
+                    //System.out.println(talet);
                     validInputcheck = true;
-                }else if (nr1or2orope==0) {
+                }else if (nr1or2orope==0) { //handling first nr inputs
                     talet = d.parseDouble(tal1);
                     nr1or2orope = 1;
-                }else if (nr1or2orope==1){
+                }else if (nr1or2orope==1){ // handling operator input
                         //talet = d.parseDouble (tal1);
                         nr1or2orope = 2;
-                }else {
+                }else { //parsing later nr inputs and send for calculations
                     talet1 = d.parseDouble (tal1);
                     validInputcheck = true;
+                    System.out.println("");
+                    System.out.println(talet + " " + operatorChar + " " + talet1 + " = ");
                     talet = calculation(operatorChar,talet,talet1);
                     nr1or2orope = 1;
 
                     System.out.println(talet);
+
+                    // check if more calculations should be done
                     if (mulOrDiv==false) {
                         do {
 
@@ -123,15 +127,6 @@ public class App {
                 }
 
             }while (validInputcheck == false || nr1or2orope <= 2);
-
-            //System.out.println("Enter operator: ");
-            //Scanner scOperator = new Scanner(System.in);
-            //operator = scOperator.nextLine();
-            //char operatorChar = operator.charAt(0);
-
-
-
-
 
         } while (true);
     }
@@ -180,6 +175,7 @@ public class App {
         }
         return flag;
     }
+
     public static double calculation (char operatorChar,double talet,double talet1){
         switch (operatorChar){
             case'+':
