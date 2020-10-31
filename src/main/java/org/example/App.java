@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
-        boolean correct;
+        boolean correct = false;
         boolean quit = false;
         boolean nr1 = false;
         int number;
@@ -18,31 +18,16 @@ public class App {
         double talet1 = 0.0;
         double answer = 0.0;
 
-        String start;
+        String start ="";
         String tal1;
         String operator;
         String tal2;
         String mat;
         do {
-
-            do {
-                correct = false;
-                mainMenu(); // print main menu
-                Scanner sc = new Scanner(System.in);
-                start = sc.nextLine();
-                char letter = start.charAt(0);
-                if (letter == 'q' || letter == 'Q') {
-                    quit = true;
-                    correct = true;
-                    //System.out.println("q");
-                } else if (letter == '1') {
-                    correct = true; // no valid input
-                }
-            } while (correct != true);
+            quit = mainMenu(correct, start, quit); // print main menu
             if (quit) break; // ends the program
-            System.out.println(correct);
             number = 0;
-            Double d = new Double("6.35");
+            Double d = new Double("0.0");
 
             nr1 = false;
             do {
@@ -154,10 +139,24 @@ public class App {
         } while (true);
     }
 
-    public static void mainMenu() {
+    public static boolean mainMenu(boolean correct, String start, boolean quit) {
         System.out.println("Start menu ");
         System.out.println("Press 1(enter) to start ");
         System.out.println("Press q(enter) to quit ");
+        do {
+            correct = false;
+            Scanner sc = new Scanner(System.in);
+            start = sc.nextLine();
+            char letter = start.charAt(0);
+            if (letter == 'q' || letter == 'Q') {
+                quit = true;
+                correct = true;
+                //System.out.println("q");
+            } else if (letter == '1') {
+                correct = true;
+            }
+        } while (correct != true);
+        return quit;
     }
 
     public static boolean checkTal(String tal, int length, int num) {
