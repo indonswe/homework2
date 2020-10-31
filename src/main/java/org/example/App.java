@@ -10,8 +10,8 @@ public class App {
     public static void main(String[] args) {
         boolean correct = false;
         boolean quit = false;
-        boolean nr1 = false;
-        int number;
+        boolean validInputcheck = false;
+        int nr1or2orope;
         boolean readyCalc;
         char operatorChar = 'a';
         double talet = 0.0;
@@ -26,15 +26,15 @@ public class App {
         do {
             quit = mainMenu(correct, start, quit); // print main menu
             if (quit) break; // ends the program
-            number = 0;
-            Double d = new Double("0.0");
+            nr1or2orope = 0;
+            Double d = new Double("0.0");//Use this to be able to parse but doesnt fully understand it
 
-            nr1 = false;
+            validInputcheck = false;
             do {
-                if (number==0) {
+                if (nr1or2orope==0) {
                     System.out.println("Enter first number: ");
 
-                }else if(number == 1){
+                }else if(nr1or2orope == 1){
                     System.out.println("Enter operator: ");
                 }
                 else{
@@ -44,8 +44,8 @@ public class App {
                 tal1 = scNr1.nextLine();
                 int length = tal1.length();
 
-                if (number ==0 || number ==2){
-                    nr1 = checkTal(tal1, length, number);
+                if (nr1or2orope ==0 || nr1or2orope ==2){
+                    validInputcheck = checkTal(tal1, length, nr1or2orope);
                     //if (nr1) readyCalc = true;
                 }else{
                     operatorChar = tal1.charAt(0);
@@ -64,40 +64,41 @@ public class App {
                             break;
 
                         default:
-                            nr1=false;
+                            validInputcheck=false;
                     }
                 }
                 //System.out.println(nr1);
-                if (nr1 == false){
+                if (validInputcheck == false){
                     System.out.println("Input error");
-                    System.out.println(number);
+                    System.out.println(nr1or2orope);
                     System.out.println(talet);
-                    nr1 = true;
-                }else if (number==0) {
+                    validInputcheck = true;
+                }else if (nr1or2orope==0) {
                     talet = d.parseDouble(tal1);
-                    number = 1;
-                }else if (number==1){
+                    nr1or2orope = 1;
+                }else if (nr1or2orope==1){
                         //talet = d.parseDouble (tal1);
-                        number = 2;
+                        nr1or2orope = 2;
                 }else {
                     talet1 = d.parseDouble (tal1);
-                    nr1 = true;
+                    validInputcheck = true;
+                    talet = calculation(operatorChar,talet,talet1);
                     switch (operatorChar){
                         case'+':
                             talet = talet + talet1;
-                            number = 1;
+                            nr1or2orope = 1;
                             break;
                         case'-':
                             talet = talet - talet1;
-                            number = 1;
+                            nr1or2orope = 1;
                             break;
                         case'*':
                             talet = talet * talet1;
-                            number = 1;
+                            nr1or2orope = 1;
                             break;
                         case'/':
                             talet = talet / talet1;
-                            number = 1;
+                            nr1or2orope = 1;
                             break;
 
                         default:
@@ -114,7 +115,7 @@ public class App {
                         if (letter == 'n' || letter == 'N') {
                             //quit = true;
                             correct = true;
-                            number = 3;
+                            nr1or2orope = 3;
                             //System.out.println("q");
                         } else if (letter == 'y'  || letter == 'Y') {
                             correct = true; // no valid input
@@ -125,7 +126,7 @@ public class App {
                     //number = 1;
                 }
 
-            }while (nr1 == false || number <= 2);
+            }while (validInputcheck == false || nr1or2orope <= 2);
 
             //System.out.println("Enter operator: ");
             //Scanner scOperator = new Scanner(System.in);
@@ -182,4 +183,8 @@ public class App {
         }
         return flag;
     }
+    public static double calculation (char operatorChar,double talet,double talet1){
+        return talet;
+    }
+
 }
