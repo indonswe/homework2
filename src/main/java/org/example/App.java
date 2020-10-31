@@ -28,7 +28,9 @@ public class App {
         do {
             quit = mainMenu(correct, start, quit); // print main menu
             if (quit) break; // ends the program
-            //nr1or2orope = 0;
+            nr1or2orope = 0;
+            talet = 0;
+            mulOrDiv = false;
             Double d = new Double("0.0");//Use this to be able to parse but doesnt fully understand it
 
             validInputcheck = false;
@@ -96,7 +98,7 @@ public class App {
                     nr1or2orope = 1;
 
                     System.out.println(talet);
-                    if (mulOrDiv=false) {
+                    if (mulOrDiv==false) {
                         do {
 
                             correct = false;
@@ -116,6 +118,8 @@ public class App {
                             }
                         } while (correct != true);
                         //number = 1;
+                    }else {
+                        nr1or2orope = 3;
                     }
                 }
 
