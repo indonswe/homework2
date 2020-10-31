@@ -8,32 +8,32 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
-        boolean correct = false;
+
         boolean quit = false;
         boolean validInputcheck = false;
         int nr1or2orope = 0;
-        //boolean readyCalc;
+
         char operatorChar = 'a';
         double talet = 0.0;
         double talet1 = 0.0;
-        //double answer = 0.0;
+
         boolean mulOrDiv = false;
 
         String start ="";
         String tal1;
-        //String operator;
-        //String tal2;
-        //String mat;
+
+        boolean correct = false; // this variable is loose, need to work on that
+
 
         do { //main loop
             quit = mainMenu(); // handle main menu
             if (quit) break; // ends the program
-            nr1or2orope = 0;
-            talet = 0;
-            mulOrDiv = false;
-            Double d = new Double("0.0");//Use this to be able to parse but doesnt fully understand it
+            nr1or2orope = 0; // keeping track of which number/operator to ask for
+            talet = 0; // answer to calculations is saved in this variable
+            mulOrDiv = false; // this one is here to limit to one calculation if * or /
+            Double d = new Double("0.0");//Use this to be able to parse later but doesnt fully understand it
 
-            validInputcheck = false;
+            validInputcheck = false; // turns to true if there is a valid input
             do {
                 if (nr1or2orope==0) {
                     System.out.println("Enter first number: ");
@@ -49,29 +49,25 @@ public class App {
                     System.out.println("Enter a number: ");
                 }
                 Scanner scNr1 = new Scanner(System.in);
-                tal1 = scNr1.nextLine();
+                tal1 = scNr1.nextLine(); // holds actual input
                 int length = tal1.length();
 
                 if (nr1or2orope ==0 || nr1or2orope ==2){
                     validInputcheck = checkTal(tal1, length, nr1or2orope); //checks number input are valid
-                }else{ //checks operator input are valid
+                }else{ //checks operator input are valid got problem when moved to method so kept in main for now
                     operatorChar = tal1.charAt(0);
                     switch (operatorChar){
                         case'+':
-                            //answer = talet + talet1;
                             break;
                         case'-':
-                            //answer = talet - talet1;
                             break;
                         case'*':
-                            //answer = talet * talet1;
                             if (mulOrDiv) validInputcheck=false;
                             mulOrDiv = true;
                             break;
                         case'/':
                             if (mulOrDiv) validInputcheck=false;
                             mulOrDiv = true;
-                            //answer = talet / talet1;
                             break;
 
                         default:
@@ -81,8 +77,6 @@ public class App {
 
                 if (validInputcheck == false){ //for not valid inputs
                     System.out.println("Input error");
-                    //System.out.println(nr1or2orope);
-                    //System.out.println(talet);
                     validInputcheck = true;
                 }else if (nr1or2orope==0) { //handling first nr inputs
                     talet = d.parseDouble(tal1);
@@ -98,7 +92,7 @@ public class App {
                     talet = calculation(operatorChar,talet,talet1);
                     nr1or2orope = 1;
 
-                    System.out.println(talet);
+                    System.out.println(talet); // print the answer
 
                     // check if more calculations should be done
                     if (mulOrDiv==false) {
@@ -110,12 +104,10 @@ public class App {
                             start = sc.nextLine();
                             char letter = start.charAt(0);
                             if (letter == 'n' || letter == 'N') {
-                                //quit = true;
                                 correct = true;
                                 nr1or2orope = 3;
-                                //System.out.println("q");
                             } else if (letter == 'y' || letter == 'Y') {
-                                correct = true; // no valid input
+                                correct = true;
                             } else {
                                 correct = false;
                             }
