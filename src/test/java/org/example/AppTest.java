@@ -93,15 +93,14 @@ public class AppTest
         //Arrange
 
         int length=0;
-        int num=0;
-        String tal="";
+        String tal="738";
         boolean actual=true;
 
 
 
 
         //Act
-        actual = App.checkTal(tal, length, num);
+        actual = App.checkTal(tal, length);
 
         //Assert
         assertTrue(actual);
@@ -113,16 +112,15 @@ public class AppTest
 
         //Arrange
 
-       int length=0;
-       int num=0;
-       String tal="";
+       int length=3;
+       String tal="7a8";
        boolean actual=true;
 
 
 
 
         //Act
-        actual = App.checkTal(tal, length, num);
+        actual = App.checkTal(tal, length);
 
 
         //Assert

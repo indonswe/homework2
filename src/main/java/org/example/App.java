@@ -53,9 +53,10 @@ public class App {
                 int length = tal1.length();
 
                 if (nr1or2orope ==0 || nr1or2orope ==2){
-                    validInputcheck = checkTal(tal1, length, nr1or2orope); //checks number input are valid
-                }else{ //checks operator input are valid got problem when moved to method so kept in main for now
-                    operatorChar = tal1.charAt(0);
+                    validInputcheck = checkTal(tal1, length); //checks number input are valid
+                }else{ //checks operator input are valid
+                    operatorChar = tal1.charAt(0); // got problem when moved to method so kept in main for now
+                    //checkOpe(operatorChar,mulOrDiv,validInputcheck);
                     switch (operatorChar){
                         case'+':
                             break;
@@ -75,7 +76,7 @@ public class App {
                     }
                 }
 
-                if (validInputcheck == false){ //for not valid inputs
+                if (validInputcheck == false){ //not valid inputs
                     System.out.println("Input error");
                     validInputcheck = true;
                 }else if (nr1or2orope==0) { //handling first nr inputs
@@ -118,10 +119,10 @@ public class App {
                     }
                 }
 
-            }while (validInputcheck == false || nr1or2orope <= 2);
+            }while (nr1or2orope<=2); //while (validInputcheck == false || nr1or2orope <= 2);
 
-        } while (true);
-    }
+        } while (true); //main loop end
+    } //main function end
 
     public static boolean mainMenu() {
         System.out.println("Start menu ");
@@ -144,28 +145,38 @@ public class App {
         return quit;
     }
 
-    public static boolean checkTal(String tal, int length, int num) {
-        Boolean flag = true; // = Character.isDigit(tal.charAt(r));
-        //char letter;
+    public static boolean checkTal(String tal, int length) {
+        Boolean flag = true;
         for (int r = 0; r < length; r++) {
-            //letter = tal.charAt(r);
-            //if (num==1){
-                //char operatorChar = String.charAt(0)
-                //if (flag != true) {
-                   // break;
-               // }
-
-            //}
             flag = Character.isDigit(tal.charAt(r));
+            if (flag != true) {
+                flag = (tal.charAt(r)=='.');
+            }
             if (flag != true) {
                 break;
             }
-
-
-
-
         }
         return flag;
+    }
+    public static boolean checkOpe(char operatorChar,boolean mulOrDiv,boolean validInputcheck){
+        switch (operatorChar){
+        case'+':
+            break;
+        case'-':
+            break;
+        case'*':
+            if (mulOrDiv) validInputcheck=false;
+            mulOrDiv = true;
+            break;
+        case'/':
+            if (mulOrDiv) validInputcheck=false;
+            mulOrDiv = true;
+            break;
+
+        default:
+            validInputcheck=false;
+        }
+        return (validInputcheck); // need to return 3 value, think I need an array
     }
 
     public static double calculation (char operatorChar,double talet,double talet1){
@@ -192,4 +203,4 @@ public class App {
         return talet;
     }
 
-}
+} // end of app
