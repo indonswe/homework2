@@ -2,16 +2,17 @@ package org.example;
 
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
+
 public class App {
     public static void main(String[] args) {
 
         boolean quit = false;
         boolean validInputcheck = false;
-        int nr1or2orope = 0;
+        int nr1or2orope = 3; /** 0 = ready for the first number
+                            1 = ready for operator
+                            2 = ready for any number except first
+                            3 = ready for mainmenu
+         */
 
         char operatorChar = 'a';
         double talet = 0.0;
@@ -28,7 +29,7 @@ public class App {
         do { //main loop
             quit = mainMenu(); // handle main menu
             if (quit) break; // ends the program
-            nr1or2orope = 0; // keeping track of which number/operator to ask for
+            nr1or2orope = 0;
             talet = 0; // answer to calculations is saved in this variable
             mulOrDiv = false; // this one is here to limit to one calculation if * or /
             Double d = new Double("0.0");//Use this to be able to parse later but doesnt fully understand it
