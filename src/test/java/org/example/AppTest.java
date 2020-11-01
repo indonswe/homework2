@@ -2,6 +2,8 @@ package org.example;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
 
 import org.junit.Test;
 
@@ -42,7 +44,7 @@ public class AppTest
 
         //Arrange
 
-        double answer = 8;
+        double tryAnswer = 8;
         char ope = '+';
         double talet = 3;
         double talet1 = 5;
@@ -53,12 +55,9 @@ public class AppTest
 
         //Act
 
-        switch (ope) {
-            case '+':
-                actual = (talet + talet1 == answer);
-                break;
-            default:
-        }
+        double answer = App.calculation(ope, talet,talet1);
+        actual=(answer==tryAnswer);
+
 
         //Assert
         assertTrue(actual);
@@ -70,7 +69,7 @@ public class AppTest
 
         //Arrange
 
-        double answer = 9;
+        double tryAnswer = 9;
         char ope = '+';
         double talet = 3;
         double talet1 = 5;
@@ -80,13 +79,51 @@ public class AppTest
 
 
         //Act
+        double answer = App.calculation(ope, talet,talet1);
+        actual=(answer==tryAnswer);
 
-        switch (ope) {
-            case '+':
-                actual = (talet + talet1 == answer);
-                break;
-            default:
-        }
+        //Assert
+        assertFalse(actual);
+
+
+    }
+    @Test
+    public void test_checkTal_succesfully(){
+
+        //Arrange
+
+        int length=0;
+        int num=0;
+        String tal="";
+        boolean actual=true;
+
+
+
+
+        //Act
+        actual = App.checkTal(tal, length, num);
+
+        //Assert
+        assertTrue(actual);
+
+
+    }
+    @Test
+    public void test_checkTal_unsuccesfully(){
+
+        //Arrange
+
+       int length=0;
+       int num=0;
+       String tal="";
+       boolean actual=true;
+
+
+
+
+        //Act
+        actual = App.checkTal(tal, length, num);
+
 
         //Assert
         assertFalse(actual);
